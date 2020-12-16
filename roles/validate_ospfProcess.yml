@@ -1,0 +1,3 @@
+- name: fail if ospfProcess input is valid
+  command: validate
+  type: ospfProcess

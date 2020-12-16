@@ -1,0 +1,49 @@
+playbooks:
+-
+  playbookName: config_newVrf_fp
+  idNumber: <id#>
+  vrfName: <vrfName>
+  # Choose one option: REGION1
+  #hostslist: [fpDs-1, fpDs-2]
+  #hostslist: [fpDs-1, fpDs-2, fpDs-3, fpDs-4]
+  #
+  # Choose one option: REGION2
+  #hostslist: [fpDs-5, fpDs-6, fpDs-7, fpDs-8]
+-
+  playbookName:  config_newNetwork_fp
+  idNumber: <id#>
+  vrfName:  <vrfName>
+  ipNetwork: <serverNetwork>
+  ospfArea: <ospfArea>
+  #Assign hsrp group
+  hsrpGroup: <hsrpGroup>
+  #Assign vlanId
+  vlanId: <serverVlanId>
+  #ospfProcess
+  ospfProcess: <ospfProcess>
+  # Choose one option: REGION1
+  #hostslist: [fpDs-1, fpDs-2]
+  #hostslist: [fpDs-1, fpDs-2, fpDs-3, fpDs-4]
+  #
+  # Choose one option: REGION2
+  #hostslist: [fpDs-5, fpDs-6, fpDs-7, fpDs-8]
+-  
+  playbookName:  config_newOspfL3Out_dsFw_fp
+  idNumber: <id#>
+  vrfName: <vrfName>
+  ipNetworkXfer: <dswFwNetwork>
+  ipNetworkLoopBack: <loopbackNetwork>
+  ospfProcess: <ospfProcess>
+  ospfArea: <ospfArea>
+  interfaceLoopbackNumber: <loopbackNumber>
+  #Request for vlanid
+  vlanId: <dswFwVlanId>
+  # Choose one option: REGION1
+  #hostslist: [fpDs-1, fpDs-2]
+  #hostslist: [fpDs-1, fpDs-2, fpDs-3, fpDs-4]
+  #
+  # Choose one option: REGION2
+  #hostslist: [fpDs-5, fpDs-6, fpDs-7, fpDs-8]
+
+
+  

@@ -1,0 +1,12 @@
+{%- macro macro5(ospfs) -%}
+{%- for ospf in ospfs %}
+router ospf {{  ospf.ospfProcess }}
+ vrf {{ ospf.vrfName }}
+  area {{  ospf.ospfArea }}
+   interface {{ ospf.interfaceName }}{{ ospf.interfaceNumber }}.{{ ospf.vlanId }}
+    authentication message-digest
+    message-digest-key 1 md5 {{ ospf.ospfPassword }}
+    dead-interval 6
+    hello-interval 2
+{% endfor -%}
+{%- endmacro -%}

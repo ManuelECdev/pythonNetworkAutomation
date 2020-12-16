@@ -1,0 +1,10 @@
+- name: new server network Configuration in existing vrf - build
+  #hosts: "{{ hostslist }}"
+  #any_errors_fatal: true
+  #max_fail_percentage: 0
+  #gather_facts: false
+  #vars:
+  #  hostname: "{{ inventory_hostname }}"
+  #  templateName: 'nx-os_newInterface_snippet'
+  roles:
+   - role: configBuild_newNetwork_fp

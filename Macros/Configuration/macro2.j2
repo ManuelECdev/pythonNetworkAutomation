@@ -1,0 +1,10 @@
+{%- macro macro2(interfaces) -%}
+{%- for interface in interfaces %}
+interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}.{{ interface.vlanId }}
+ description {{ interface.description }}
+ encapsulation dot1q {{ interface.vlanId }}
+ vrf {{ interface.vrfName }}
+ ipv4 mtu 1500
+ ipv4 address {{ interface.ipMask.ip }}/{{ interface.ipMask.prefixlen }}
+ {% endfor -%}
+ {%- endmacro %}

@@ -1,0 +1,4 @@
+- name: Fail task - fail if  vrfName is not defined or blank
+  command: validate
+  type: vrfName
+

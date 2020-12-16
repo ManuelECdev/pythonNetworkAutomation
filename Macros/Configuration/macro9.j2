@@ -1,0 +1,9 @@
+{% macro macro9(ospf) -%}
+router ospf {{  ospf.ospfProcess }}
+ vrf {{ ospf.vrfName }}
+   router-id {{ ospf.routerId }}
+   auto-cost reference-bandwidth 100000
+   area {{  ospf.ospfArea }} nssa
+   log-adjacency-changes
+   passive-interface default
+{%- endmacro %}

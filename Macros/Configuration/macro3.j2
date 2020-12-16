@@ -1,0 +1,11 @@
+{%- macro macro3(prefixLists) -%}
+{%- for prefixList in prefixLists %}
+edit prefix-set {{ prefixList.name }} nano
+  {%- if prefixList.description -%}
+  # {{ prefixList.description }}
+  {% endif %}
+  {% for ipMask in prefixList.ipMasks -%}
+  {{ ipMask.ip }}/{{ ipMask.prefixlen }},
+  {%- endfor -%}
+{%- endfor -%}
+{%- endmacro -%}

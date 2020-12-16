@@ -1,0 +1,15 @@
+plays:
+########################## Validation ##########################
+
+- import_playFile: /etc/ansible/plays/val_newOspfL3Out_dsFw_fp.yml
+
+########################## Configuration Build  ##########################
+
+- import_playFile: /etc/ansible/plays/configBuild_newInterfaceLoopback_fp.yml
+
+- import_playFile: /etc/ansible/plays/configBuild_newOspf_fp.yml
+
+- import_playFile: /etc/ansible/plays/configBuild_newInterfaceVlanXferFw_fp.yml
+
+- import_playFile: /etc/ansible/plays/configBuild_newOspfL3Out_dsFw_fp.yml
+

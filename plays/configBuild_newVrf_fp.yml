@@ -1,0 +1,10 @@
+- name: new vrf Configuration - build
+  #hosts: "{{ hostslist }}"
+  #gather_facts: false
+  #any_errors_fatal: true
+  #max_fail_percentage: 0
+  #vars:
+  #  hostname: "{{ hostslist | join('_') }}"
+  #  templateName: 'nx-os_newVrf_snippet'
+  roles:
+   - role: configBuild_newVrf_fp

@@ -1,0 +1,3 @@
+- name: fail if harpGroup is not defined, if it is defined and blank or not a list
+  command: validate
+  type: harpGroup

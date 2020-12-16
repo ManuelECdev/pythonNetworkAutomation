@@ -1,0 +1,3 @@
+- name: fail if ipNetwork input is valid
+  command: validate
+  type: ipNetwork

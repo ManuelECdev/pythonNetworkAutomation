@@ -1,0 +1,3 @@
+- name: Fail task - fail if idNumber is not defined or if it is defined and blank
+  command: validate
+  type: idNumber

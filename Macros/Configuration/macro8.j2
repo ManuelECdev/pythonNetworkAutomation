@@ -1,0 +1,8 @@
+{% macro macro8(interfaces) -%}
+{%- for interface in interfaces %}
+interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}
+  vrf member {{ interface.vrfName }}
+  ip address {{ interface.ipMask.ip }}/{{ interface.ipMask.prefixlen }}
+  ip router ospf {{  interface.ospfProcess }} area {{  interface.ospfArea }}
+{% endfor -%}
+{%- endmacro %}

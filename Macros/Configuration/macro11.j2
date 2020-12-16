@@ -1,0 +1,19 @@
+{% macro macro11(interfaces) -%}
+{%- for interface in interfaces %}
+interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}
+  description {{ interface.interfaceDescription }}
+  vrf member {{ interface.vrfName }}
+  no ip redirects
+  ip address {{ interface.ipMask.ip }}/{{ interface.ipMask.prefixlen }}
+  ip router ospf {{  interface.ospfProcess }} area {{  interface.ospfArea }}
+  hsrp version 2
+  hsrp {{ interface.hsrpId }}
+    authentication text vlan{{  interface.hsrpAuth }}
+    preempt delay{{ interface.hsrpDelay }}reload 600
+    priority {{ interface.hsrpPriority }}
+    track 490 decrement 10
+    track 500 decrement 50
+    ip {{ interface.hsrpVip }}
+  no shutdown
+{% endfor -%}
+{%- endmacro %}

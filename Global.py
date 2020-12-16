@@ -1,0 +1,2 @@
+
+Global = { 'debug': 0 }

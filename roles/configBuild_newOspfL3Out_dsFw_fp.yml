@@ -1,0 +1,2 @@
+- name: merge configuration files into one
+  command: mergeConfigs
