@@ -124,3 +124,5 @@ def isIpMask(str):
 		return False
 	except ValueError:
 		return False
+		
+def task

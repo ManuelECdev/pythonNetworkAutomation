@@ -12,6 +12,7 @@ import os
 import ipaddress
 from templates import *
 from Global import *
+from playbooks import *
 
 
 def run():
@@ -74,22 +75,37 @@ def run():
     if Global['debug'] == 1:
         print input
 
-    inputArrray = input
-    if 'tasks' in input:
-        inputArrray = input['tasks']
+    playbooks = input
+    if 'playbooks' in input:
+        playbooks = input['playbooks']
     else:
-        print 'Error: tasks was not provided'
+        print 'Error: playbooks not provided in inputTemplate file'
         sys.exit()
 
+    def buildSnippet(play,role,task):
+        
+        
+        
+        
+        
+    def runPlaybook(playbook):
+        
+        for play in playbook['plays']:
+            for role in play['roles']:
+                ##run the task
+                runTask(play, role, task)        
+        
     #
     #
     #Process the lines
     #
     #
-    for TemplateObject in inputArrray:
+    for playbook in playbooks:
 
         if Global['debug'] == 1:
-            print TemplateObject
+            print playbooks
+    
+        runPlaybook(playbook['playbookName'])
 
         #
         #
