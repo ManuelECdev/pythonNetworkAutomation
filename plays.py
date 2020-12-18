@@ -1,5 +1,5 @@
 
-
+from roles import *
 #- name: new loopbak interface configuration in existing vrf - build
   #hosts: "{{ hostslist }}"
   #any_errors_fatal: true
@@ -13,7 +13,7 @@
 
 play_configBuild_newInterfaceLoopback_fp = {
     "description": "new loopbak interface configuration in existing vrf - build",
-    "roles": [ { "role":"configBuild_newInterfaceLoopback_fp" }]
+    "roles": [ { "role": role_configBuild_newInterfaceLoopback_fp }]
 }
 
  #- name: new xfer interface configuration in existing vrf - build
@@ -31,7 +31,7 @@ play_configBuild_newInterfaceLoopback_fp = {
  
 play_configBuild_newInterfaceVlanXferFw_fp = {
     "description": "new xfer interface configuration in existing vrf - build",
-    "roles": [ { "role": "configBuild_newInterfaceVlanXferFw_fp" } ]
+    "roles": [ { "role": role_configBuild_newInterfaceVlanXferFw_fp } ]
 }
 
 #- name: new server network Configuration in existing vrf - build
