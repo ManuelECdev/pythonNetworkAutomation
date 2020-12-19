@@ -75,109 +75,29 @@ def run():
     if Global['debug'] == 1:
         print input
 
-    playbooks = input
-    if 'playbooks' in input:
-        playbooks = input['playbooks']
+    ##extract playbooks from input
+    inputPlaybooks = input
+    if 'playbooks' in inputPlaybooks:
+        inputPlaybooks = input['playbooks']
     else:
         print 'Error: playbooks not provided in inputTemplate file'
         sys.exit()
 
-    def buildSnippet(play,role,task):
-        
-        
-        
-        
-        
-    def runPlaybook(playbook):
-        
-        for play in playbook['plays']:
-            for role in play['roles']:
-                ##run the task
-                runTask(play, role, task)        
-        
     #
     #
     #Process the lines
     #
     #
-    for playbook in playbooks:
+    for inputPlaybook in inputPlaybooks:
 
         if Global['debug'] == 1:
-            print playbooks
-    
-        runPlaybook(playbook['playbookName'])
-
-        #
-        #
-        #Process the object
-        #
-        #
-
-        if 'configurationSnippetsNames' in TemplateObject:
-
-            for deviceNameOrder,deviceName in enumerate(TemplateObject['devicesNames']):
-
-                snippetB = snippetBlock(dict(deviceName=deviceName,configurationSnippetsNames=TemplateObject['configurationSnippetsNames'],preTestSnippets=[],preVerifySnippets=[],postVerifySnippets=[],postTestSnippets=[]))
-
-                #for configurationSnippetNameOder,snippetName in enumerate(TemplateObject['configurationSnippetsNames']):
-                for configurationSnippetOder,configrationSnippet in enumerate(snippetB.configrationSnippets):
-
-                    snippetObject =  templateHelper.buildTemplate(TemplateObject,configrationSnippet['name'],deviceNameOrder,configurationSnippetOder)
-
-                    if snippetObject != None:
-                        configrationSnippet['snippet'] = snippetObject
-                        #snippetB.configrationSnippets.append(snippetObject)
-                    else:
-                        print 'Error in the input... no snippetObject ... exiting'
-                        sys.exit()
-
-                templateArray.append(snippetB)
-
-
-    #
-    #
-    #Print the data
-    #
-    #
-    for aTemplate in templateArray:
-
-        output_from_parsed_template = ""
-        templateName = ""
-        output_from_parsed_template = "################### " + aTemplate.deviceName + " ###################\n\n"
-
-        for order,snippetObject in enumerate(aTemplate.configrationSnippets):
-
-
-            if order == len(aTemplate.configrationSnippets) -1:
-                output_from_parsed_template = output_from_parsed_template + gen_snippet(snippetObject['name'], snippetObject['snippet'].__dict__) + "\n"
-            else:
-                output_from_parsed_template = output_from_parsed_template + gen_snippet(snippetObject['name'], snippetObject['snippet'].__dict__)
-
-            if IdName != "":
-
-                if not os.path.exists(IdName):
-
-                    os.makedirs(IdName)
-
-                os.chdir(IdName)
-
-                fileName = IdName + '_' + '-'.join(aTemplate.configurationSnippetsNames) + '_' + aTemplate.deviceName
-
-                if not os.path.isfile(fileName):
-                    with open(fileName, "wb") as fh:
-                        fh.write(output_from_parsed_template)
-                else:
-                    with open(fileName, "a") as fh:
-                        fh.write(output_from_parsed_template)
-                os.chdir("..")
-
-            else:
-                print output_from_parsed_template
-
-            output_from_parsed_template = ""
-
-
-
+            print inputPlaybooks
+        
+        playbook = getPlaybook(inputPlaybook['playbookName'])
+        if playbook:
+            runPlaybook(playbook, inputPlaybook)
+            
+  
 
 if __name__ == "__main__":
     run()

@@ -5,7 +5,7 @@ from tasks import *
 
 role_configBuild_newInterfaceLoopback_fp = {
     "description": "build snippet for newInterfaceLoopback",
-    "task": task_commonTasks_buildConfigFromTemplate
+    "task": task_buildConfig_newInterfaceLoopback_fp
     
 }
 
@@ -14,7 +14,7 @@ role_configBuild_newInterfaceLoopback_fp = {
 
 role_configBuild_newInterfaceVlanXferFw_fp = {
     "description": "build snippet for newInterfaceVlanXferFw",
-    "task": task_commonTasks_buildConfigFromTemplate
+    "task": task_buildConfig_newInterfaceVlanXferFw_fp
 }
 
 #- include_task:
@@ -22,7 +22,7 @@ role_configBuild_newInterfaceVlanXferFw_fp = {
 
 role_configBuild_newNetwork_fp = {
     "description": "build snippet for newNetwork",
-    "task": task_commonTasks_buildConfigFromTemplate
+    "task": task_buildConfig_newNetwork_fp
 }
 
 #- include_task:
@@ -30,23 +30,16 @@ role_configBuild_newNetwork_fp = {
 
 role_configBuild_newOspf_fp = {
     "description": "newOspf",
-    "task": task_commonTasks_buildConfigFromTemplate
+    "task": task_buildConfig_newOspf_fp
 }
 
-#- name: merge configuration files into one
-#  command: mergeConfigs
-    
-role_configBuild_newOspfL3Out_dsFw_fp = {
-    "description": "merge configuration files into one",
-    "task": task_commonTasks_buildConfigFromTemplate
-}
 
 #- name: merge configuration files into one
 #  command: mergeConfigs
     
 role_configBuild_newVrf_fp = {
     "description":  "build snippet for newVrf",
-    "task": task_commonTasks_buildConfigFromTemplate
+    "task": task_buildConfig_newVrf_fp
 }
 
 

@@ -30,7 +30,28 @@ def gen_snippet(snippet, config):
 
     template = ENV.get_template('/snippets/configuration/' + snippet + ".j2")
     return template.render(config)
+    
 
+ 	
+def getPlaybook(playbookName):
+        
+    switcher = {
+        "config_newVrf_fp": playbook_config_newVrf_fp,
+        "config_newOspfL3Out_dsFw_fp": playbook_config_newOspfL3Out_dsFw_fp,
+        "config_newNetwork_fp": playbood_config_newNetwork_fp,
+    }
+        
+    return switcher.get(playbookName, None )
+    
+def runPlaybook(playbook,inputPlaybook):
+        
+    for play in playbook['plays']:
+        for role in play['roles']:
+            for hostName in inputPlaybook['hostslist']:
+                ##run the task
+                role['task'](playbook,role, hostName,inputPlaybook ) 
+                    
+                    
 def stringToArrayOfString(string,debug,split):
 
 	arrayofString = []
