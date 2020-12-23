@@ -1,5 +1,4 @@
-{% macro macro10(interfaces) -%}
-{%- for interface in interfaces %}
+{% macro macro10(interface) -%}
 interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}
  description {{ interface.interfaceDescription }}
  vrf member {{ interface.vrfName }}
@@ -10,7 +9,4 @@ interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}
  no ip ospf passive-interface
  ip router ospf {{  interface.ospfProcess }} area {{  interface.ospfArea }}
  no shutdown
-{% endfor -%}
- {# ip ospf dead-interval 6 #}
- {# ip ospf hello-interval 2 #}
 {%- endmacro %}

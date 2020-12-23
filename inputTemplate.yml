@@ -36,6 +36,7 @@ playbooks:
   ospfProcess: <ospfProcess>
   ospfArea: <ospfArea>
   interfaceLoopbackNumber: <loopbackNumber>
+  ospfPassword: <ospfPassword>
   #Request for vlanid
   vlanId: <dswFwVlanId>
   # Choose one option: REGION1
