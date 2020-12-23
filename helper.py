@@ -44,12 +44,19 @@ def getPlaybook(playbookName):
     return switcher.get(playbookName, None )
     
 def runPlaybook(playbook,inputPlaybook):
+	
+	#check first validate plays
+	for validatePlay in playbook['validatePlays']:
+		for role in validatePlay['roles']:
+			role['task'](playbook,role, hostName,inputPlaybook )
+		
         
-    for play in playbook['plays']:
-        for role in play['roles']:
-            for hostName in inputPlaybook['hostslist']:
-                ##run the task
-                role['task'](playbook,role, hostName,inputPlaybook ) 
+    for playGroup in playbook['playGroups']:
+    	for play in playGroup:
+    		for hostName in inputPlaybook['hostslist']:
+        		for role in play['roles']:
+                	##run the task
+                	role['task'](playbook,role, hostName,inputPlaybook ) 
                     
                     
 def stringToArrayOfString(string,debug,split):
