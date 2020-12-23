@@ -1,5 +1,7 @@
 #HostOrder group vars
 
+from ipaddress import *
+
 firstsHosts_fp = {
     "hsrpPriority": 104,
     "ipOffsetXfer": 2,
@@ -38,12 +40,30 @@ fp = {
     "interfaceVlanName": 'Vlan',
     "interfaceDescriptionXferFw": 'xfer_Fw',
     "interfaceDescriptionServer": 'serverNetwork',
+    "ospfPasswordFunction": buildOspfPassword,
+    "routerIdFunction": buildRouterId,
+    "hsrpAuthFunction": buildHsrpAuth,
+    "HsrpVipFunction": buildHsrpVip,
 }
-#hsrpVip to be calculated per case
-# hsrpAuth to be calculated per case
-# routerId to be calculated per case
-#ospfPassword to be calculated per case
 
+def buildOspfPassword(vlanId, vrfName):
+    mySeparator = ""
+    join = mySeparator.join([str(vlanId),vrfName])
+    return join[0:8]
+    
+def buildRouterId(subnet,ipOffsetLoopback,deviceOrder):
+    
+    ipAddress = str( ipaddress.ip_network(subnet).network_address + deviceOrder + ipOffsetLoopback )
+
+    return ipAddress    
+
+def buildHsrpAuth(vlanId):
+    return vlanId
+    
+def buildHsrpVip(subnet,hsrpVipOffset):
+    return None
+    
+    
 hostName2OrderGroupVar = {
     "fpDs-1": { "hostOrder": firstsHosts_fp, "design": fp },
     "fpDs-2": { "hostOrder": secondsHosts_fp, "design": fp },
