@@ -1,7 +1,0 @@
-{%- macro macro13(prefixLists) -%}
-{%- for prefixList in prefixLists %}
-{%- for ipMask in prefixList.ipMasks %}
-ip prefix-list {{ prefixList.name }} seq xxx permit {{ ipMask.ip }}/{{ ipMask.prefixlen }}
-{%- endfor -%}
-{%- endfor -%}
-{%- endmacro -%}

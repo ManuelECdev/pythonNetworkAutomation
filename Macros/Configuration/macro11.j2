@@ -1,19 +1,17 @@
-{% macro macro11(interfaces) -%}
-{%- for interface in interfaces %}
-interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}
-  description {{ interface.interfaceDescription }}
-  vrf member {{ interface.vrfName }}
+{% macro macro11(snippetObject) -%}
+interface {{ snippetObject.interfaceName }}{{ snippetObject.interfaceNumber }}
+  description {{ snippetObject.interfaceDescription }}
+  vrf member {{ snippetObject.vrfName }}
   no ip redirects
-  ip address {{ interface.ipMask.ip }}/{{ interface.ipMask.prefixlen }}
-  ip router ospf {{  interface.ospfProcess }} area {{  interface.ospfArea }}
+  ip address {{ snippetObject.ipAddress }}/{{ snippetObject.iprefixlen }}
+  ip router ospf {{  snippetObject.ospfProcess }} area {{  snippetObject.ospfArea }}
   hsrp version 2
-  hsrp {{ interface.hsrpId }}
-    authentication text vlan{{  interface.hsrpAuth }}
-    preempt delay{{ interface.hsrpDelay }}reload 600
-    priority {{ interface.hsrpPriority }}
+  hsrp {{ snippetObject.hsrpGroup }}
+    authentication text vlan{{  snippetObject.hsrpAuth }}
+    preempt delay{{ " minimum 120 " if ( snippetObject.deviceOrder == 1 ) else " " }}reload 600
+    priority {{ snippetObject.hsrpPriority }}
     track 490 decrement 10
     track 500 decrement 50
-    ip {{ interface.hsrpVip }}
+    ip {{ snippetObject.hsrpVip }}
   no shutdown
-{% endfor -%}
 {%- endmacro %}

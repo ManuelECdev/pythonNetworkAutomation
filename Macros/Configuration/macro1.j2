@@ -1,8 +1,0 @@
-{%- macro macro1(interfaces) -%}
-{%- for interface in interfaces %}
-interface {{ interface.interfaceName }}{{ interface.interfaceNumber }}
-  {% for vlan in interface.vlansId  -%}
-  switchport trunk allowed vlan add {{ vlan }}
-  {% endfor -%}
-{%- endfor -%}
-{%- endmacro -%}

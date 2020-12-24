@@ -1,7 +1,0 @@
-{%- macro macro12(bgp) -%}
-router bgp {{ bgp.asNumber }}
-  address-family ipv4
-		{%- for ipMask in bgp.ipMasks %}
-    network {{ ipMask.ip }} mask {{ ipMask.mask }}
-		{%- endfor -%}
-{%- endmacro -%}

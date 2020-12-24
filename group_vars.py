@@ -38,7 +38,9 @@ fourthsHosts_fp = {
 fp = {
     "hsrpVipOffset": 1,
     "interfaceVlanName": 'Vlan',
+    "intefaceLoopbackName": 'Loopback',
     "interfaceDescriptionXferFw": 'xfer_Fw',
+    "interfaceDescriptionLoopback": 'lLoopback',
     "interfaceDescriptionServer": 'serverNetwork',
     "ospfPasswordFunction": buildOspfPassword,
     "routerIdFunction": buildRouterId,
@@ -60,8 +62,12 @@ def buildRouterId(subnet,ipOffsetLoopback,deviceOrder):
 def buildHsrpAuth(vlanId):
     return vlanId
     
+#TODO    
 def buildHsrpVip(subnet,hsrpVipOffset):
-    return None
+    
+    ipAddress = str( ipaddress.ip_network(subnet).network_address + hsrpVipOffset )
+    
+    return ipAddress
     
     
 hostName2OrderGroupVar = {
