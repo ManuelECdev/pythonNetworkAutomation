@@ -13,6 +13,7 @@ import ipaddress
 from templates import *
 from Global import *
 from playbooks import *
+from group_vars import *
 
 
 def run():
@@ -95,7 +96,7 @@ def run():
         
         playbook = getPlaybook(inputPlaybook['playbookName'])
         if playbook:
-            runPlaybook(playbook, inputPlaybook)
+            runPlaybook(playbook, inputPlaybook, hostName2GroupVar)
             
   
 

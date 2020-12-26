@@ -43,20 +43,19 @@ def getPlaybook(playbookName):
         
     return switcher.get(playbookName, None )
     
-def runPlaybook(playbook,inputPlaybook):
+def runPlaybook(playbook,inputPlaybook, GroupVar):
 	
 	#check first validate plays
 	for validatePlay in playbook['validatePlays']:
 		for role in validatePlay['roles']:
-			role['task'](playbook,role, hostName,inputPlaybook )
+			role['task'](role,inputPlaybook)
 		
         
     for playGroup in playbook['playGroups']:
     	for play in playGroup:
     		for hostName in inputPlaybook['hostslist']:
         		for role in play['roles']:
-                	##run the task
-                	role['task'](playbook,role, hostName,inputPlaybook ) 
+                	role['task'](hostName,inputPlaybook,GroupVar) 
                     
                     
 def stringToArrayOfString(string,debug,split):
@@ -144,7 +143,7 @@ def isOspfArea(str):
 
 	return True
 
-def isIpMask(str):
+def isSubnet(str):
 	try:
 		ip_network(str)
 		return True

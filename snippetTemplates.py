@@ -219,6 +219,64 @@ def task_buildConfig_newNetwork_fp(playbook,role, hostName,inputPlaybook, groupV
     
     return rendered_buildConfig
     
-
-        
     
+def task_validate_hsrpGroup(playbook,role, hostName,inputPlaybook, groupVars):
+    
+    hsrpGroup = inputPlaybook['hsrpGroup']
+    
+    if isInt(hsrpGroup):
+        if ( hsrpGroup < 1 ) or ( hsrpGroup > 4095 ):
+            return 1
+    
+    return -1
+    
+    
+def task_validate_idNumber(playbook,role, hostName,inputPlaybook, groupVars):
+    
+    idNumber = inputPlaybook['idNumber']
+
+    if len(idNumber) > 15  or len(idNumber)  == 0:
+        return -1
+        
+    return 1
+    
+def task_validate_interfaceLoopBackNumber(playbook,role, hostName,inputPlaybook, groupVars):
+    
+    interfaceLoopbackNumber = inputPlaybook['interfaceLoopbackNumber']
+    
+    if isInt(interfaceLoopbackNumber):
+        if ( interfaceLoopbackNumber  < 0 ) or  ( interfaceLoopbackNumber > 1023 ):
+            return 1
+    
+    return -1    
+    
+    
+def task_validate_ipNetwork(playbook,role, hostName,inputPlaybook, groupVars):
+    
+    subnet = inputPlaybook[role['inputVar']]
+    
+    if isSubnet(subnet):
+        return 1
+    
+    return -1      
+
+
+def task_validate_vrfName(playbook,role, hostName,inputPlaybook, groupVars):
+    
+    vrfName = inputPlaybook['vrfName']
+
+    if ( len(vrfName) > 32  ) or  ( len(vrfName)  == 0 )  or ( re.search("[^a-zA-Z0-9\\-;_]", vrfName) != None ):
+        return -1
+        
+    return 1
+    
+    
+def task_validate_vlanId(playbook,role, hostName,inputPlaybook, groupVars):
+    
+    vlanId = inputPlaybook['vlanId']
+    
+    if isInt(vlanId):
+        if ( vlanId < 1 ) or ( vlanId > 4095 ):
+            return -1
+            
+    return 1

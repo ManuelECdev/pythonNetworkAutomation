@@ -62,7 +62,6 @@ def buildRouterId(subnet,ipOffsetLoopback,deviceOrder):
 def buildHsrpAuth(vlanId):
     return vlanId
     
-#TODO    
 def buildHsrpVip(subnet,hsrpVipOffset):
     
     ipAddress = str( ipaddress.ip_network(subnet).network_address + hsrpVipOffset )
@@ -70,7 +69,7 @@ def buildHsrpVip(subnet,hsrpVipOffset):
     return ipAddress
     
     
-hostName2OrderGroupVar = {
+hostName2GroupVar = {
     "fpDs-1": { "hostOrder": firstsHosts_fp, "design": fp },
     "fpDs-2": { "hostOrder": secondsHosts_fp, "design": fp },
     "fpDs-3": { "hostOrder": thirdsHosts_fp, "design": fp },
