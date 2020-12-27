@@ -10,7 +10,7 @@ import fileinput
 import ast
 import os
 import ipaddress
-from templates import *
+#from templates import *
 from Global import *
 from playbooks import *
 from group_vars import *
@@ -48,7 +48,7 @@ def run():
                 if sys.argv[index] == "-f":
 
                     if index == argslen -1:
-                        print 'Error in the arguments. Usage: -f output file, -d enable debugging'
+                        print ("Error in the arguments. Usage: -f output file, -d enable debugging")
                         sys.exit()
                     else:
                         IdName = sys.argv[index + 1]
@@ -59,7 +59,7 @@ def run():
                     yamlFileName = sys.argv[index + 1]
 
     except IndexError:
-        print "A bug happened, It will be fixed asap... exiting"
+        print ("A bug happened, It will be fixed asap... exiting")
         sys.exit()
 
     #
@@ -70,18 +70,18 @@ def run():
     if yamlFileName != "":
         input = get_config(yamlFileName)
     else:
-        print 'Error: Yaml file name was not provided'
+        print ("Error: Yaml file name was not provided")
         sys.exit()
         
     if Global['debug'] == 1:
-        print input
+        print (input)
 
     ##extract playbooks from input
     inputPlaybooks = input
     if 'playbooks' in inputPlaybooks:
         inputPlaybooks = input['playbooks']
     else:
-        print 'Error: playbooks not provided in inputTemplate file'
+        print ("Error: playbooks not provided in inputTemplate file")
         sys.exit()
 
     #
@@ -92,7 +92,7 @@ def run():
     for inputPlaybook in inputPlaybooks:
 
         if Global['debug'] == 1:
-            print inputPlaybooks
+            print (inputPlaybooks)
         
         playbook = getPlaybook(inputPlaybook['playbookName'])
         if playbook:

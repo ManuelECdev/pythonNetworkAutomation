@@ -31,73 +31,6 @@ def gen_snippet(snippet, config):
     template = ENV.get_template('/snippets/configuration/' + snippet + ".j2")
     return template.render(config)
     
-
- 	
-def getPlaybook(playbookName):
-        
-    switcher = {
-        "config_newVrf_fp": playbook_config_newVrf_fp,
-        "config_newOspfL3Out_dsFw_fp": playbook_config_newOspfL3Out_dsFw_fp,
-        "config_newNetwork_fp": playbood_config_newNetwork_fp,
-    }
-        
-    return switcher.get(playbookName, None )
-    
-def runPlaybook(playbook,inputPlaybook, GroupVar):
-	
-	#check first validate plays
-	for validatePlay in playbook['validatePlays']:
-		for role in validatePlay['roles']:
-			role['task'](role,inputPlaybook)
-		
-        
-    for playGroup in playbook['playGroups']:
-    	for play in playGroup:
-    		for hostName in inputPlaybook['hostslist']:
-        		for role in play['roles']:
-                	role['task'](hostName,inputPlaybook,GroupVar) 
-                    
-                    
-def stringToArrayOfString(string,debug,split):
-
-	arrayofString = []
-
-	if debug == 1:
-		print type(string)
-		print string
-
-	for splitedstring in string.split(split):
-		if debug == 1:
-			print splitedstring
-			print type(splitedstring)
-
-		arrayofString.append(splitedstring)
-
-	if debug == 1:
-		print arrayofString
-
-	return arrayofString
-
-def stringToArrayOfJSON(string,debug):
-
-	arrayofJson = []
-
-	if debug == 1:
-		print type(string)
-		print string
-
-	for jsonstring in string.split('-'):
-		if debug == 1:
-			print jsonstring
-			print type(jsonstring)
-
-		arrayofJson.append(ast.literal_eval(jsonstring))
-
-	if debug == 1:
-		print arrayofJson
-
-	return arrayofJson
-
 def parseHeaders(headers,debug):
 
 	# TO DO
@@ -107,8 +40,8 @@ def parseHeaders(headers,debug):
 
 
 	if debug == 1:
-		print len(headers)
-		print len(supported)
+		print (len(headers))
+		print (len(supported))
 
 	if len(headers) != 18:
 		return -1
@@ -122,6 +55,12 @@ def parseHeaders(headers,debug):
 
 
 	return 0
+	
+def buildIpAddress(subnet,deviceNameOrder,ipOffset ):
+    return str( ipaddress.ip_network(subnet).network_address + deviceNameOrder + ipOffset )
+    
+def buildPrefixlen(subnet):
+    return str( ipaddress.ip_network(subnet).prefixlen )
 
 def isInt(s):
     try:
@@ -151,5 +90,4 @@ def isSubnet(str):
 		return False
 	except ValueError:
 		return False
-		
-def task
+	
