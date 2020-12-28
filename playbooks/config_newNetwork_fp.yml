@@ -1,8 +1,0 @@
-plays:
-########################## Validation ##########################
-
-- import_playFile: /etc/ansible/plays/val_newNetwork_fp.yml
-
-########################## Configuration build  ##########################
-
-- import_playFile: /etc/ansible/plays/configBuild_newNetwork_fp.yml

@@ -1,8 +1,0 @@
-- name: merge configurations into one file - build
-  #hosts: "{{ hostslist }}"
-  #any_errors_fatal: true
-  #max_fail_percentage: 0
-  #gather_facts: false
-  roles:
-   - role: configBuild_newOspfL3Out_dsFw_fp
-   #- local_action: copy content={{ config_newInterfaceLoopback_fp + config_newOspf_fp + config_newInterfaceVlanXferFw_fp }} dest="/etc/ansible/configs/{{ idNumber }}/{{ idNumber }}_{{ inventory_hostname }}_config_newOspfL3Out_dsFw_fp.cfg"

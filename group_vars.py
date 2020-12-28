@@ -2,6 +2,10 @@
 
 from ipaddress import *
 
+supportedInputKeys = ['vrfName','idNumber','vrfName','hostslist','ipNetwork','ospfArea','hsrpGroup','vlanId','ospfProcess','ipNetworkXfer','ipNetworkLoopBack','interfaceLoopbackNumber','ospfPassword']
+
+firstsHosts = {'fpDs-1'}
+
 firstsHosts_fp = {
     "hsrpPriority": 104,
     "ipOffsetXfer": 2,
@@ -9,6 +13,8 @@ firstsHosts_fp = {
     "ipOffsetServer": 2,
     "deviceOrder": 1
 }
+
+secondsHosts = {'fpDs-2'}
 
 secondsHosts_fp = {
     "hsrpPriority": 103,
@@ -18,6 +24,8 @@ secondsHosts_fp = {
     "deviceOrder": 2
 }
 
+thirdsHosts = {'fpDs-3'}
+
 thirdsHosts_fp = {
     "hsrpPriority": 102,
     "ipOffsetXfer": 4,
@@ -25,6 +33,8 @@ thirdsHosts_fp = {
     "ipOffsetServer": 4,
     "deviceOrder": 3    
 }
+
+fourthsHosts = {'fpDs-4'}
 
 fourthsHosts_fp = {
     "hsrpPriority": 101,

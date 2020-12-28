@@ -1,9 +1,0 @@
-plays:
-
-########################## Validation ##########################
-
-- import_playFile: /etc/ansible/plays/val_newVrf_fp.yml
-
-########################## Configuration Build  ##########################
-
-- import_playFile: /etc/ansible/plays/configBuild_newVrf_fp.yml

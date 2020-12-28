@@ -1,9 +1,0 @@
-- name: Validate extra vars parameters
-  #hosts: localhost
-  #gather_facts: false
-  #any_errors_fatal: true
-  #max_fail_percentage: 0
-  roles:
-   - role: validate_hostslist
-   - role: validate_vrfName
-   - role: validate_idNumber

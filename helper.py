@@ -8,7 +8,8 @@
 
 #TODO: Consider use of the leading underscore
 #from ucstools import storage
-from jinja2 import Environment, FileSystemLoader
+#from jinja2 import Environment, FileSystemLoader
+import jinja2
 from ipaddress import *
 import re
 import yaml
@@ -31,30 +32,16 @@ def gen_snippet(snippet, config):
     template = ENV.get_template('/snippets/configuration/' + snippet + ".j2")
     return template.render(config)
     
-def parseHeaders(headers,debug):
+def supportedInputKeys(inputKeys, supportedInputKeys):
 
-	# TO DO
-	# Detect duplicate in headers
-
-	supported = ['vrfName','ospfArea','VlanId1','VlanId2','InterfaceNumber','hsrpId','hsrpVip','deviceName','IpMasks','ospfProcess','IpMasks1','IpMasks2','hsrpPriority','template','VlanId3','asNumber','IpMasks3','IpMasks4','prefixListName','ospfPassword']
-
-
-	if debug == 1:
-		print (len(headers))
-		print (len(supported))
-
-	if len(headers) != 18:
-		return -1
-
-	for header in headers:
+	for inputKey in inputKeys:
 
 		try:
-			supported.index(header)
+			supportedInputKeys.index(inputKey)
 		except ValueError:
 			return -1
 
-
-	return 0
+	return 1
 	
 def buildIpAddress(subnet,deviceNameOrder,ipOffset ):
     return str( ipaddress.ip_network(subnet).network_address + deviceNameOrder + ipOffset )

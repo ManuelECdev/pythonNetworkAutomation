@@ -1,3 +1,0 @@
-- name: fail if interfaceLoopbackNumber input is valid
-  command: validate
-  type: interfaceLoopbackNumber

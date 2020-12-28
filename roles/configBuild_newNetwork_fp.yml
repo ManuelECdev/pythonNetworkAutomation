@@ -1,2 +1,0 @@
-- include_tasks:
-    file: /etc/ansible/tasks/common/commonTasks_buildConfigFromTemplate.yml

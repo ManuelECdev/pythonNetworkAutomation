@@ -1,3 +1,0 @@
-- name: fail if ospfArea input is valid
-  command: validate
-  type: ospfArea

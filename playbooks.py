@@ -23,10 +23,9 @@ def runPlaybook(playbook,inputPlaybook, GroupVar):
 	for validatePlay in playbook['validatePlays']:
 		for role in validatePlay['roles']:
 			role['task'](role,inputPlaybook)
-		
-        
-    for playGroup in playbook['playGroups']:
-    	for play in playGroup:
-    		for hostName in inputPlaybook['hostslist']:
-        		for role in play['roles']:
-                	role['task'](hostName,inputPlaybook,GroupVar) 
+			
+	for playGroup in playbook['playGroups']:
+	    for play in playGroup:
+	        for hostName in inputPlaybook['hostslist']:
+	            for role in play['roles']:
+	               role['task'](hostName,inputPlaybook,GroupVar)
