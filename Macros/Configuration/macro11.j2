@@ -3,7 +3,7 @@ interface {{ snippetObject.interfaceName }}{{ snippetObject.interfaceNumber }}
   description {{ snippetObject.interfaceDescription }}
   vrf member {{ snippetObject.vrfName }}
   no ip redirects
-  ip address {{ snippetObject.ipAddress }}/{{ snippetObject.iprefixlen }}
+  ip address {{ snippetObject.ipAddress }}/{{ snippetObject.ipPrefix }}
   ip router ospf {{  snippetObject.ospfProcess }} area {{  snippetObject.ospfArea }}
   hsrp version 2
   hsrp {{ snippetObject.hsrpGroup }}

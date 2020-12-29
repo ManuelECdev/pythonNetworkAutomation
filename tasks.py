@@ -17,7 +17,7 @@ def task_buildConfig_newVrf_fp_function(printHostName,hostName,inputPlaybook,gro
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet7', newVrfObject.__dict__),
+        "renderedSnippet": gen_snippet('snippet7', {"snippetObject": newVrfObject.__dict__ }),
         "printHostName": printHostName
     }    
     
@@ -31,8 +31,8 @@ task_buildConfig_newVrf_fp = {
 def task_buildConfig_newInterfaceVlanXferFw_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
-    hostOrderGroupVar = groupVars['hostOrder']
-    designGroupVar = groupVars['design']
+    hostOrderGroupVar = groupVars[hostName]['hostOrder']
+    designGroupVar = groupVars[hostName]['design']
     
     #setting up variables from inputPlaybook
     vlanId = inputPlaybook['vlanId']
@@ -51,13 +51,13 @@ def task_buildConfig_newInterfaceVlanXferFw_fp_function(printHostName,hostName,i
     #build variables from groupVars, inputVars
     ospfPassword = designGroupVar['ospfPasswordFunction'](vlanId, vrfName)
     ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetXfer)
-    ipPrefixlen = buildPrefixlen(subnet)
+    ipPrefix = buildPrefixlen(subnet)
     
-    newInterfaceVlanXferFwObject = newInterfaceVlanXferFw(interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefixlen, ospfPassword , ospfProcess, ospfArea)
+    newInterfaceVlanXferFwObject = newInterfaceVlanXferFw(interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefix, ospfPassword , ospfProcess, ospfArea)
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet10', newInterfaceVlanXferFwObject.__dict__),
+        "renderedSnippet": gen_snippet('snippet10', {"snippetObject": newInterfaceVlanXferFwObject.__dict__ }),
         "printHostName": printHostName
     }    
     
@@ -72,8 +72,8 @@ task_buildConfig_newInterfaceVlanXferFw_fp = {
 def task_buildConfig_newInterfaceLoopback_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
-    hostOrderGroupVar = groupVars['hostOrder']
-    designGroupVar = groupVars['design']
+    hostOrderGroupVar = groupVars[hostName]['hostOrder']
+    designGroupVar = groupVars[hostName]['design']
     
     #setting up variables from inputPlaybook
     interfaceNumber = inputPlaybook['vlanId']
@@ -83,19 +83,19 @@ def task_buildConfig_newInterfaceLoopback_fp_function(printHostName,hostName,inp
     subnet = inputPlaybook['ipNetworkLoopBack']
    
     #setup variables from group vars
-    interfaceName = designGroupVar['interfaceVlanName']
+    interfaceName = designGroupVar['intefaceLoopbackName']
     deviceOrder= hostOrderGroupVar['deviceOrder']
     ipOffsetLoopback = hostOrderGroupVar['ipOffsetLoopback']
     
     #build variables from groupVars, inputVars
     ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetLoopback)
-    ipPrefixlen = buildPrefixlen(subnet)
+    ipPrefix = designGroupVar['LoopbackPrefix']
     
-    newInterfaceLoopbackObject = newInterfaceLoopback(interfaceName, interfaceNumber, vrfName, ipAddress, ipPrefixlen , ospfProcess, ospfArea)
+    newInterfaceLoopbackObject = newInterfaceLoopback(interfaceName, interfaceNumber, vrfName, ipAddress, ipPrefix , ospfProcess, ospfArea)
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet8', newInterfaceLoopbackObject.__dict__),
+        "renderedSnippet": gen_snippet('snippet8', {"snippetObject": newInterfaceLoopbackObject.__dict__ }),
         "printHostName": printHostName
     }    
     
@@ -110,8 +110,8 @@ task_buildConfig_newInterfaceLoopback_fp = {
 def task_buildConfig_newOspf_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
-    hostOrderGroupVar = groupVars['hostOrder']
-    designGroupVar = groupVars['design']
+    hostOrderGroupVar = groupVars[hostName]['hostOrder']
+    designGroupVar = groupVars[hostName]['design']
     
     #setting up variables from inputPlaybook
     vrfName = inputPlaybook['vrfName']
@@ -128,7 +128,7 @@ def task_buildConfig_newOspf_fp_function(printHostName,hostName,inputPlaybook,gr
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet9', newOspfObject.__dict__),
+        "renderedSnippet": gen_snippet('snippet9', {"snippetObject": newOspfObject.__dict__ }),
         "printHostName": printHostName
     }    
     
@@ -142,8 +142,8 @@ task_buildConfig_newOspf_fp = {
 def task_buildConfig_newNetwork_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
-    hostOrderGroupVar = groupVars['hostOrder']
-    designGroupVar = groupVars['design']
+    hostOrderGroupVar = groupVars[hostName]['hostOrder']
+    designGroupVar = groupVars[hostName]['design']
     
     #setting up variables from inputPlaybook
     vlanId = inputPlaybook['vlanId']
@@ -162,17 +162,18 @@ def task_buildConfig_newNetwork_fp_function(printHostName,hostName,inputPlaybook
     hsrpVipOffset = designGroupVar['hsrpVipOffset']
     
     #build variables from groupVars, inputVars
-    ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetXfer)
-    ipPrefixlen = buildPrefixlen(subnet)
+    ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetServer)
+    ipPrefix = buildPrefixlen(subnet)
     hsrpAuth = designGroupVar['hsrpAuthFunction'](vlanId)
     hsrpPriority = hostOrderGroupVar['hsrpPriority']
     hsrpVip = designGroupVar['HsrpVipFunction'](subnet,hsrpVipOffset)
     
-    newNetworkObject = newNetwork(interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefixlen, ospfProcess, ospfArea, hsrpGroup, hsrpAuth, deviceOrder,hsrpPriority, hsrpVip )
+
+    newNetworkObject = newNetwork(interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefix, ospfProcess, ospfArea, hsrpGroup, hsrpAuth, deviceOrder,hsrpPriority, hsrpVip )
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet11', newNetworkObject.__dict__),
+        "renderedSnippet": gen_snippet('snippet11',{"snippetObject":  newNetworkObject.__dict__ }),
         "printHostName": printHostName
     }    
     

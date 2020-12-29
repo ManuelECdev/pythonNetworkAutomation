@@ -6,27 +6,27 @@ class newVrf:
         
 class newInterfaceVlanXferFw:
 
-    def __init__(self, interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefixlen, ospfPassword, ospfProcess, ospfArea):
+    def __init__(self, interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefix, ospfPassword, ospfProcess, ospfArea):
 
         self.interfaceName = interfaceName
         self.interfaceNumber = interfaceNumber
         self.interfaceDescription = interfaceDescription
         self.vrfName = vrfName        
         self.ipAddress = ipAddress
-        self.ipPrefixlen = ipPrefixlen
+        self.ipPrefix = ipPrefix
         self.ospfPassword = ospfPassword
         self.ospfProcess = ospfProcess
         self.ospfArea = ospfArea
         
 class newInterfaceLoopback:
 
-    def __init__(self, interfaceName, interfaceNumber, vrfName, ipAddress, ipPrefixlen, ospfProcess, ospfArea):
+    def __init__(self, interfaceName, interfaceNumber, vrfName, ipAddress, ipPrefix, ospfProcess, ospfArea):
 
         self.interfaceName = interfaceName
         self.interfaceNumber = interfaceNumber
         self.vrfName = vrfName        
         self.ipAddress = ipAddress
-        self.ipPrefixlen = ipPrefixlen
+        self.ipPrefix = ipPrefix
         self.ospfProcess = ospfProcess
         self.ospfArea = ospfArea
         
@@ -43,14 +43,14 @@ class newOspf:
         
 class newNetwork:
 
-    def __init__(self, interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefixlen, ospfProcess, ospfArea, hsrpGroup, hsrpAuth, deviceOrder,hsrpPriority, hsrpVip ):
+    def __init__(self, interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefix, ospfProcess, ospfArea, hsrpGroup, hsrpAuth, deviceOrder,hsrpPriority, hsrpVip ):
 
         self.interfaceName = interfaceName
         self.interfaceNumber = interfaceNumber
         self.interfaceDescription = interfaceDescription
         self.vrfName = vrfName        
         self.ipAddress = ipAddress
-        self.ipPrefixlen = ipPrefixlen
+        self.ipPrefix = ipPrefix
         self.ospfProcess = ospfProcess
         self.ospfArea = ospfArea
         self.hsrpGroup = hsrpGroup

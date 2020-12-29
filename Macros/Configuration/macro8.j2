@@ -1,6 +1,6 @@
 {% macro macro8(snippetObject) -%}
 interface {{ snippetObject.interfaceName }}{{ snippetObject.interfaceNumber }}
   vrf member {{ snippetObject.vrfName }}
-  ip address {{ snippetObject.ipAddress }}/{{ snippetObject.prefixlen }}
+  ip address {{ snippetObject.ipAddress }}/{{ snippetObject.ipPrefix }}
   ip router ospf {{  snippetObject.ospfProcess }} area {{  snippetObject.ospfArea }}
 {%- endmacro %}

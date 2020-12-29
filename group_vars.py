@@ -1,6 +1,7 @@
 #HostOrder group vars
 
 from ipaddress import *
+import ipaddress
 
 supportedInputKeys = ['vrfName','idNumber','vrfName','hostslist','ipNetwork','ospfArea','hsrpGroup','vlanId','ospfProcess','ipNetworkXfer','ipNetworkLoopBack','interfaceLoopbackNumber','ospfPassword']
 
@@ -53,12 +54,12 @@ def buildOspfPassword(vlanId, vrfName):
     
 def buildRouterId(subnet,ipOffsetLoopback,deviceOrder):
     
-    ipAddress = str( ipaddress.ip_network(subnet).network_address + deviceOrder + ipOffsetLoopback )
+    ipAddress = str( ipaddress.ip_network(subnet).network_address  + ipOffsetLoopback )
 
     return ipAddress    
 
-def buildHsrpAuth(vlanId):
-    return vlanId
+def buildHsrpAuth(authInput):
+    return authInput
     
 def buildHsrpVip(subnet,hsrpVipOffset):
     
@@ -70,8 +71,9 @@ fp = {
     "hsrpVipOffset": 1,
     "interfaceVlanName": 'Vlan',
     "intefaceLoopbackName": 'Loopback',
+    "LoopbackPrefix": "32",
     "interfaceDescriptionXferFw": 'xfer_Fw',
-    "interfaceDescriptionLoopback": 'lLoopback',
+    "interfaceDescriptionLoopback": 'Loopback',
     "interfaceDescriptionServer": 'serverNetwork',
     "ospfPasswordFunction": buildOspfPassword,
     "routerIdFunction": buildRouterId,

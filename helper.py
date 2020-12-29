@@ -9,6 +9,7 @@
 #TODO: Consider use of the leading underscore
 #from ucstools import storage
 from jinja2 import Environment, FileSystemLoader
+import ipaddress
 from ipaddress import *
 import re
 import yaml
@@ -43,11 +44,11 @@ def supportedInputKeys(inputKeys, supportedInputKeys):
 	return 1
 	
 def printHostName(HostName):
-	return "################### " + HostName + " ###################\n\n"
+	return "################### " + HostName + " ###################\n"
 	
 	
 def buildIpAddress(subnet,deviceNameOrder,ipOffset ):
-    return str( ipaddress.ip_network(subnet).network_address + deviceNameOrder + ipOffset )
+    return str( ipaddress.ip_network(subnet).network_address  + ipOffset )
     
 def buildPrefixlen(subnet):
     return str( ipaddress.ip_network(subnet).prefixlen )

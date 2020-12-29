@@ -85,22 +85,26 @@ def run():
     #
     #
     
-    renderedPlaybook = []
+    renderedPlaybooks = []
     
     for inputPlaybook in inputPlaybooks:
 
         playbook = getPlaybook(inputPlaybook['playbookName'])
         if playbook:
-            renderedPlaybook = runPlaybook(playbook, inputPlaybook, hostName2GroupVar)
+            renderedPlaybooks.append(runPlaybook(playbook, inputPlaybook, hostName2GroupVar))
             
-    for index,renderedTask in renderedPlaybook:
-        if renderedTask['printHostName']:
-            print(printHostName(renderedTask['hostName']))
-        
-        if index == len(renderedPlaybook) -1:     
+
+    #
+    #
+    #Process the output
+    #
+    #
+    for renderedPlaybook in renderedPlaybooks:
+        for renderedTask in renderedPlaybook:
+            if renderedTask['printHostName']:
+                print(printHostName(renderedTask['hostName']))
+            
             print(renderedTask['renderedSnippet'] + "\n")
-        else:
-            print(renderedTask['renderedSnippet'])
         
         
 if __name__ == "__main__":

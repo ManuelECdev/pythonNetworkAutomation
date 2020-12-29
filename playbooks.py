@@ -5,7 +5,7 @@ playbook_config_newVrf_fp = { "validatePlays": [ play_validate_newVrf_fp ], "pla
 
 playbook_config_newOspfL3Out_dsFw_fp = { "validatePlays": [ play_validate_newOspfL3Out_dsFw_fp ], "playGroups": [ [ { "play": play_configBuild_newInterfaceLoopback_fp, "printHostName": True }, { "play": play_configBuild_newOspf_fp, "printHostName": False }, { "play": play_configBuild_newInterfaceVlanXferFw_fp, "printHostName": False } ] ] }
 
-playbood_config_newNetwork_fp = { "validatePlays": [ play_validate_newNetwork_fp ], "playGroups":  [ [ play_configBuild_newNetwork_fp ] ] }
+playbood_config_newNetwork_fp = { "validatePlays": [ play_validate_newNetwork_fp ], "playGroups":  [ [ {"play": play_configBuild_newNetwork_fp, "printHostName": True } ] ] }
 
 
 def getPlaybook(playbookName):

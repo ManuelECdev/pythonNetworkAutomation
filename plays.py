@@ -28,7 +28,7 @@ play_configBuild_newVrf_fp = {
 
 play_validate_newNetwork_fp = {
     "description": "Validate extra vars parameters",
-    "roles": [ { "role": role_validate_hostslist }, { "role": role_validate_vrfName }, { "role": role_validate_vlanId }, { "role": role_validate_hsrpGroup }, { "role": role_validate_ipNetwork }, { "role": role_validate_ospfArea }, { "role": role_validate_ospfProcess }, { "role": role_validate_idNumber } ]
+    "roles": [ { "role": role_validate_hostslist }, { "role": role_validate_vrfName }, { "role": role_validate_vlanId }, { "role": role_validate_hsrpGroup }, { "role": role_validate_ipNetwork, "inputVar": "ipNetwork" }, { "role": role_validate_ospfArea }, { "role": role_validate_ospfProcess }, { "role": role_validate_idNumber } ]
 }
 
 play_validate_newOspfL3Out_dsFw_fp = {
