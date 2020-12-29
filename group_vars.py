@@ -45,18 +45,6 @@ fourthsHosts_fp = {
 }
 
 #Arquitecture solution group vars
-fp = {
-    "hsrpVipOffset": 1,
-    "interfaceVlanName": 'Vlan',
-    "intefaceLoopbackName": 'Loopback',
-    "interfaceDescriptionXferFw": 'xfer_Fw',
-    "interfaceDescriptionLoopback": 'lLoopback',
-    "interfaceDescriptionServer": 'serverNetwork',
-    "ospfPasswordFunction": buildOspfPassword,
-    "routerIdFunction": buildRouterId,
-    "hsrpAuthFunction": buildHsrpAuth,
-    "HsrpVipFunction": buildHsrpVip,
-}
 
 def buildOspfPassword(vlanId, vrfName):
     mySeparator = ""
@@ -78,7 +66,19 @@ def buildHsrpVip(subnet,hsrpVipOffset):
     
     return ipAddress
     
-    
+fp = {
+    "hsrpVipOffset": 1,
+    "interfaceVlanName": 'Vlan',
+    "intefaceLoopbackName": 'Loopback',
+    "interfaceDescriptionXferFw": 'xfer_Fw',
+    "interfaceDescriptionLoopback": 'lLoopback',
+    "interfaceDescriptionServer": 'serverNetwork',
+    "ospfPasswordFunction": buildOspfPassword,
+    "routerIdFunction": buildRouterId,
+    "hsrpAuthFunction": buildHsrpAuth,
+    "HsrpVipFunction": buildHsrpVip,
+}
+
 hostName2GroupVar = {
     "fpDs-1": { "hostOrder": firstsHosts_fp, "design": fp },
     "fpDs-2": { "hostOrder": secondsHosts_fp, "design": fp },

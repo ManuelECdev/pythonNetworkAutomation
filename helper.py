@@ -8,8 +8,7 @@
 
 #TODO: Consider use of the leading underscore
 #from ucstools import storage
-#from jinja2 import Environment, FileSystemLoader
-import jinja2
+from jinja2 import Environment, FileSystemLoader
 from ipaddress import *
 import re
 import yaml
@@ -29,7 +28,7 @@ def gen_snippet(snippet, config):
     "config" represents the portion of the YAML
     file applicable to this snippet"""
 
-    template = ENV.get_template('/snippets/configuration/' + snippet + ".j2")
+    template = ENV.get_template('./snippets/Configuration/' + snippet + ".j2")
     return template.render(config)
     
 def supportedInputKeys(inputKeys, supportedInputKeys):
@@ -42,6 +41,10 @@ def supportedInputKeys(inputKeys, supportedInputKeys):
 			return -1
 
 	return 1
+	
+def printHostName(HostName):
+	return "################### " + HostName + " ###################\n\n"
+	
 	
 def buildIpAddress(subnet,deviceNameOrder,ipOffset ):
     return str( ipaddress.ip_network(subnet).network_address + deviceNameOrder + ipOffset )

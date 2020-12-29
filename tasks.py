@@ -6,33 +6,29 @@
 from snippets import *
 from helper import *
 
-task_buildConfig_newVrf_fp = {
-    "description":  "build snippet for newVrf",
-    "task": task_buildConfig_newVrf_fp_function
-}
 
-def task_buildConfig_newVrf_fp_function(playbook,role, hostName,inputPlaybook):
+
+def task_buildConfig_newVrf_fp_function(printHostName,hostName,inputPlaybook,groupVars):
      
-    rendered_buildConfig = {
-        "hostName": hostName,
-        "renderedSnippet": None
-    }
-    
     #setting up variables from inputPlaybook
     vrfName = inputPlaybook['vrfName']
     
     newVrfObject = newVrf(vrfName)
     
-    rendered_buildConfig['renderedSnippet']  = gen_snippet('snippet7', newVrfObject.__dict__)
+    rendered_buildConfig = {
+        "hostName": hostName,
+        "renderedSnippet": gen_snippet('snippet7', newVrfObject.__dict__),
+        "printHostName": printHostName
+    }    
     
     return rendered_buildConfig
-    
-task_buildConfig_newInterfaceVlanXferFw_fp = {
-    "description": "build snippet for newInterfaceVlanXferFw",
-    "task": task_buildConfig_newInterfaceVlanXferFw_fp_function
+
+task_buildConfig_newVrf_fp = {
+    "description":  "build snippet for newVrf",
+    "task": task_buildConfig_newVrf_fp_function
 }
-    
-def task_buildConfig_newInterfaceVlanXferFw_fp_function(playbook,role, hostName,inputPlaybook, groupVars):
+
+def task_buildConfig_newInterfaceVlanXferFw_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
     hostOrderGroupVar = groupVars['hostOrder']
@@ -61,19 +57,19 @@ def task_buildConfig_newInterfaceVlanXferFw_fp_function(playbook,role, hostName,
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet10', newInterfaceVlanXferFwObject.__dict__)
+        "renderedSnippet": gen_snippet('snippet10', newInterfaceVlanXferFwObject.__dict__),
+        "printHostName": printHostName
     }    
     
     return rendered_buildConfig
-    
 
-task_buildConfig_newInterfaceLoopback_fp = {
-    "description": "build snippet for newInterfaceLoopback",
-    "task": task_buildConfig_newInterfaceLoopback_fp_function
-    
-}
+task_buildConfig_newInterfaceVlanXferFw_fp = {
+    "description": "build snippet for newInterfaceVlanXferFw",
+    "task": task_buildConfig_newInterfaceVlanXferFw_fp_function
+}    
 
-def task_buildConfig_newInterfaceLoopback_fp_function(playbook,role, hostName,inputPlaybook, groupVars):
+
+def task_buildConfig_newInterfaceLoopback_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
     hostOrderGroupVar = groupVars['hostOrder']
@@ -99,17 +95,19 @@ def task_buildConfig_newInterfaceLoopback_fp_function(playbook,role, hostName,in
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet8', newInterfaceLoopbackObject.__dict__)
+        "renderedSnippet": gen_snippet('snippet8', newInterfaceLoopbackObject.__dict__),
+        "printHostName": printHostName
     }    
     
     return rendered_buildConfig
+
+task_buildConfig_newInterfaceLoopback_fp = {
+    "description": "build snippet for newInterfaceLoopback",
+    "task": task_buildConfig_newInterfaceLoopback_fp_function
     
-task_buildConfig_newOspf_fp = {
-    "description": "newOspf",
-    "task": task_buildConfig_newOspf_fp_function
 }
-    
-def task_buildConfig_newOspf_fp_function(playbook,role, hostName,inputPlaybook, groupVars):
+
+def task_buildConfig_newOspf_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
     hostOrderGroupVar = groupVars['hostOrder']
@@ -130,17 +128,18 @@ def task_buildConfig_newOspf_fp_function(playbook,role, hostName,inputPlaybook, 
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet9', newOspfObject.__dict__)
+        "renderedSnippet": gen_snippet('snippet9', newOspfObject.__dict__),
+        "printHostName": printHostName
     }    
     
     return rendered_buildConfig
-    
-task_buildConfig_newNetwork_fp = {
-    "description": "build snippet for newNetwork",
-    "task": task_buildConfig_newNetwork_fp_function
+
+task_buildConfig_newOspf_fp = {
+    "description": "newOspf",
+    "task": task_buildConfig_newOspf_fp_function
 }
-    
-def task_buildConfig_newNetwork_fp_function(playbook,role, hostName,inputPlaybook, groupVars):
+
+def task_buildConfig_newNetwork_fp_function(printHostName,hostName,inputPlaybook,groupVars):
     
     #setting up group vars
     hostOrderGroupVar = groupVars['hostOrder']
@@ -173,19 +172,20 @@ def task_buildConfig_newNetwork_fp_function(playbook,role, hostName,inputPlayboo
     
     rendered_buildConfig = {
         "hostName": hostName,
-        "renderedSnippet": gen_snippet('snippet11', newNetworkObject.__dict__)
+        "renderedSnippet": gen_snippet('snippet11', newNetworkObject.__dict__),
+        "printHostName": printHostName
     }    
     
     return rendered_buildConfig
-    
-task_validate_vrfName = {
-    "description": "validate vrfName",
-    "name": task_validate_vrfName_function
+
+task_buildConfig_newNetwork_fp = {
+    "description": "build snippet for newNetwork",
+    "task": task_buildConfig_newNetwork_fp_function
 }
 
 def task_validate_vrfName_function(role,inputPlaybook):
     
-    if 'vrfName' in inputPlaybook:
+    if 'vrfName' in inputPlaybook and inputPlaybook['vrfName'] != None:
         vrfName = inputPlaybook['vrfName']
     else:
         return -1
@@ -195,15 +195,14 @@ def task_validate_vrfName_function(role,inputPlaybook):
         
     return 1
 
-
-task_validate_vlanId = {
-    "description": "validate vlanId",
-    "name": task_validate_vlanId_function
+task_validate_vrfName = {
+    "description": "validate vrfName",
+    "name": task_validate_vrfName_function
 }
 
 def task_validate_vlanId_function(role,inputPlaybook):
     
-    if 'vlanId' in inputPlaybook:
+    if 'vlanId' in inputPlaybook and inputPlaybook['vlanId'] != None:
         vlanId = inputPlaybook['vlanId']
     else:
         return -1
@@ -214,14 +213,14 @@ def task_validate_vlanId_function(role,inputPlaybook):
             
     return 1
 
-task_validate_ospfProcess = {
-    "description": "validate ospfProcess",
-    "name": task_validate_ospfProcess_function
+task_validate_vlanId = {
+    "description": "validate vlanId",
+    "name": task_validate_vlanId_function
 }
 
 def task_validate_ospfProcess_function(role,inputPlaybook):
     
-    if 'ospfProcess' in inputPlaybook:
+    if 'ospfProcess' in inputPlaybook and inputPlaybook['ospfProcess'] != None:
         ospfProcess = inputPlaybook['ospfProcess']
     else:
         return -1
@@ -232,14 +231,15 @@ def task_validate_ospfProcess_function(role,inputPlaybook):
     
     return 1 
 
-task_validate_ospfArea = {
-    "description": "validate ospfArea",
-    "name": task_validate_ospfArea_function
+task_validate_ospfProcess = {
+    "description": "validate ospfProcess",
+    "name": task_validate_ospfProcess_function
 }
+
 
 def task_validate_ospfArea_function(role,inputPlaybook):
     
-    if 'ospfArea' in inputPlaybook:
+    if 'ospfArea' in inputPlaybook and inputPlaybook['ospfArea'] != None:
         ospfArea = inputPlaybook['ospfArea']
     else:
         return -1
@@ -249,14 +249,14 @@ def task_validate_ospfArea_function(role,inputPlaybook):
             
     return 1
 
-task_validate_ipNetwork = {
-    "description": "validate ipNetwork",
-    "name": task_validate_ipNetwork_function
+task_validate_ospfArea = {
+    "description": "validate ospfArea",
+    "name": task_validate_ospfArea_function
 }
 
 def task_validate_ipNetwork_function(role,inputPlaybook):
     
-    if role['inputVar'] in inputPlaybook:
+    if role['inputVar'] in inputPlaybook and inputPlaybook[role['inputVar']] != None:
         subnet = inputPlaybook[role['inputVar']]
     else:
         return -1
@@ -266,14 +266,14 @@ def task_validate_ipNetwork_function(role,inputPlaybook):
     
     return -1  
 
-task_validate_interfaceLoopBackNumber = {
-    "description": "validate interfaceLoopBackNumber",
-    "name": task_validate_interfaceLoopBackNumber_function
+task_validate_ipNetwork = {
+    "description": "validate ipNetwork",
+    "name": task_validate_ipNetwork_function
 }
 
 def task_validate_interfaceLoopBackNumber_function(role,inputPlaybook):
     
-    if 'interfaceLoopbackNumber' in inputPlaybook:
+    if 'interfaceLoopbackNumber' in inputPlaybook and inputPlaybook['interfaceLoopbackNumber'] != None:
         interfaceLoopbackNumber = inputPlaybook['interfaceLoopbackNumber']
     else:
         return -1
@@ -284,14 +284,15 @@ def task_validate_interfaceLoopBackNumber_function(role,inputPlaybook):
     
     return 1 
 
-task_validate_idNumber = {
-    "description": "validate idNumber",
-    "name": task_validate_idNumber_function
+task_validate_interfaceLoopBackNumber = {
+    "description": "validate interfaceLoopBackNumber",
+    "name": task_validate_interfaceLoopBackNumber_function
 }
+
 
 def task_validate_idNumber_function(role,inputPlaybook):
     
-    if 'idNumber' in inputPlaybook:
+    if 'idNumber' in inputPlaybook and inputPlaybook['idNumber'] != None:
         idNumber = inputPlaybook['idNumber']
     else:
         return -1
@@ -301,14 +302,14 @@ def task_validate_idNumber_function(role,inputPlaybook):
         
     return 1
 
-task_validate_hsrpGroup = {
-    "description": "validate hsrpGroup",
-    "name": task_validate_hsrpGroup_function
+task_validate_idNumber = {
+    "description": "validate idNumber",
+    "name": task_validate_idNumber_function
 }
 
 def task_validate_hsrpGroup_function(role,inputPlaybook):
     
-    if 'hsrpGroup' in inputPlaybook:
+    if 'hsrpGroup' in inputPlaybook and inputPlaybook['hsrpGroup'] != None:
         hsrpGroup = inputPlaybook['hsrpGroup']
     else:
         return -1
@@ -319,14 +320,14 @@ def task_validate_hsrpGroup_function(role,inputPlaybook):
     
     return 1
 
-task_validate_hostslist = {
-    "description": "validate hostslist",
-    "name": task_validate_hostslist_function
+task_validate_hsrpGroup = {
+    "description": "validate hsrpGroup",
+    "name": task_validate_hsrpGroup_function
 }
 
 def task_validate_hostslist_function(role,inputPlaybook):
     
-    if 'hostlists' in inputPlaybook:
+    if 'hostlists' in inputPlaybook and inputPlaybook['hostlists'] != None:
         hostlists = inputPlaybook['hostlists']
     else:
         return -1
@@ -342,3 +343,8 @@ def task_validate_hostslist_function(role,inputPlaybook):
             return -1
     
     return 1
+    
+task_validate_hostslist = {
+    "description": "validate hostslist",
+    "name": task_validate_hostslist_function
+}

@@ -53,8 +53,6 @@ def run():
                     else:
                         IdName = sys.argv[index + 1]
 
-                elif sys.argv[index] == "-d":
-                    Global['debug'] = 1
                 elif sys.argv[index] == "-yaml":
                     yamlFileName = sys.argv[index + 1]
 
@@ -73,9 +71,6 @@ def run():
         print ("Error: Yaml file name was not provided")
         sys.exit()
         
-    if Global['debug'] == 1:
-        print (input)
-
     ##extract playbooks from input
     inputPlaybooks = input
     if 'playbooks' in inputPlaybooks:
@@ -89,16 +84,24 @@ def run():
     #Process the lines
     #
     #
+    
+    renderedPlaybook = []
+    
     for inputPlaybook in inputPlaybooks:
 
-        if Global['debug'] == 1:
-            print (inputPlaybooks)
-        
         playbook = getPlaybook(inputPlaybook['playbookName'])
         if playbook:
-            runPlaybook(playbook, inputPlaybook, hostName2GroupVar)
+            renderedPlaybook = runPlaybook(playbook, inputPlaybook, hostName2GroupVar)
             
-  
-
+    for index,renderedTask in renderedPlaybook:
+        if renderedTask['printHostName']:
+            print(printHostName(renderedTask['hostName']))
+        
+        if index == len(renderedPlaybook) -1:     
+            print(renderedTask['renderedSnippet'] + "\n")
+        else:
+            print(renderedTask['renderedSnippet'])
+        
+        
 if __name__ == "__main__":
     run()
