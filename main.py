@@ -80,7 +80,8 @@ def run():
             if playbook:
                 renderedPlaybooks.append(runPlaybook(playbook, inputPlaybook, hostName2GroupVar))
         else:
-            print ("Error: playbookName key not provided in playbook input, skipping ...")
+            print ("Error: playbookName key not provided in playbook input, exiting ...")
+            sys.exit()
     #
     #
     #Process the output
