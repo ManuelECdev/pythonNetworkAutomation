@@ -1,20 +1,8 @@
 #/usr/bin/env python
-"""
-
-"""
-
 import sys
 from helper import *
-import re
-import fileinput
-import ast
-import os
-import ipaddress
-#from templates import *
-from Global import *
 from playbooks import *
 from group_vars import *
-
 
 def run():
 
@@ -23,41 +11,33 @@ def run():
     #Variable initialization
     #
     #
-    fileName = ""
-    IdName = ""
+    
     yamlFileName = ""
-    headersCheck = 0
-    output_from_parsed_template = ""
-    templateindex = 0
-    deviceindex = 0
-    templateArray = []
     input = {}
 
     #
     #
     # Check the input arguments.
     #
-    #
+
     try:
 
         argslen = len(sys.argv)
+        
         if argslen > 1:
             index = 1
             for index in range(argslen):
 
-                if sys.argv[index] == "-f":
+                if sys.argv[index] == "-yaml":
 
                     if index == argslen -1:
-                        print ("Error in the arguments. Usage: -f output file, -d enable debugging")
+                        print ("Error in the arguments. Usage: -yaml <inputFile>")
                         sys.exit()
                     else:
-                        IdName = sys.argv[index + 1]
-
-                elif sys.argv[index] == "-yaml":
-                    yamlFileName = sys.argv[index + 1]
+                        yamlFileName = sys.argv[index + 1]
 
     except IndexError:
-        print ("A bug happened, It will be fixed asap... exiting")
+        print ("An error happened, exiting ... ")
         sys.exit()
 
     #
@@ -65,18 +45,25 @@ def run():
     # Read the input data
     #
     #
-    if yamlFileName != "":
+    
+    try:
         input = get_config(yamlFileName)
-    else:
-        print ("Error: Yaml file name was not provided")
+    except IOError:
+        print('No such file or directory, exiting ...')
         sys.exit()
+
         
-    ##extract playbooks from input
+    #
+    #
+    # Extract playbooks from input
+    #
+    #        
+    
     inputPlaybooks = input
     if 'playbooks' in inputPlaybooks:
         inputPlaybooks = input['playbooks']
     else:
-        print ("Error: playbooks not provided in inputTemplate file")
+        print ("Error: playbooks key not provided in input file")
         sys.exit()
 
     #
@@ -88,17 +75,18 @@ def run():
     renderedPlaybooks = []
     
     for inputPlaybook in inputPlaybooks:
-
-        playbook = getPlaybook(inputPlaybook['playbookName'])
-        if playbook:
-            renderedPlaybooks.append(runPlaybook(playbook, inputPlaybook, hostName2GroupVar))
-            
-
+        if 'playbookName' in inputPlaybook:
+            playbook = getPlaybook(inputPlaybook['playbookName'])
+            if playbook:
+                renderedPlaybooks.append(runPlaybook(playbook, inputPlaybook, hostName2GroupVar))
+        else:
+            print ("Error: playbookName key not provided in playbook input, skipping ...")
     #
     #
     #Process the output
     #
     #
+    
     for renderedPlaybook in renderedPlaybooks:
         for renderedTask in renderedPlaybook:
             if renderedTask['printHostName']:

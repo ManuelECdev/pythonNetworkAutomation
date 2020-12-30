@@ -1,4 +1,5 @@
 from plays import *
+import sys
 
 
 playbook_config_newVrf_fp = { "validatePlays": [ play_validate_newVrf_fp ], "playGroups": [ [ { "play": play_configBuild_newVrf_fp, "printHostName": True } ] ] }
@@ -24,12 +25,14 @@ def runPlaybook(playbook,inputPlaybook, GroupVar):
 	
 	for validatePlay in playbook['validatePlays']:
 		for role in validatePlay['roles']:
-			role['role']['task']['name'](role,inputPlaybook)
+			if role['role']['task']['function'](role,inputPlaybook) == -1:
+				sys.exit()
+				
 	
 	for playGroup in playbook['playGroups']:
 		for hostName in inputPlaybook['hostslist']:
 			for play in playGroup:
 				for role in play['play']['roles']:
-					renderedTasks.append(role['role']['task']['task'](play['printHostName'],hostName,inputPlaybook,GroupVar))
+					renderedTasks.append(role['role']['task']['function'](play['printHostName'],hostName,inputPlaybook,GroupVar))
 					
 	return renderedTasks

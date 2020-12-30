@@ -1,13 +1,4 @@
 #!/usr/bin/env python
-""" jinja2-nxos-config
-
-    Accepts arguments from YAML config file
-    and generates a Jinja2 configuration
-	import yaml
-"""
-
-#TODO: Consider use of the leading underscore
-#from ucstools import storage
 from jinja2 import Environment, FileSystemLoader
 import ipaddress
 from ipaddress import *
