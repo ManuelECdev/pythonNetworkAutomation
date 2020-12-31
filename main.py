@@ -51,6 +51,9 @@ def run():
     except IOError:
         print('No such file or directory, exiting ...')
         sys.exit()
+    except yaml.scanner.ScannerError:
+        print('Malformed input, exiting ...')
+        sys.exit()
 
         
     #
@@ -79,6 +82,9 @@ def run():
             playbook = getPlaybook(inputPlaybook['playbookName'])
             if playbook:
                 renderedPlaybooks.append(runPlaybook(playbook, inputPlaybook, hostName2GroupVar))
+            else:
+                print ("Error: playbookName value not valid, exiting ...")
+                sys.exit()
         else:
             print ("Error: playbookName key not provided in playbook input, exiting ...")
             sys.exit()

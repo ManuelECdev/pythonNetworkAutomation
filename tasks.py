@@ -72,7 +72,7 @@ def task_buildConfig_newInterfaceLoopback_fp_function(printHostName,hostName,inp
     designGroupVar = groupVars[hostName]['design']
     
     #setting up variables from inputPlaybook
-    interfaceNumber = inputPlaybook['vlanId']
+    interfaceNumber = inputPlaybook['interfaceLoopbackNumber']
     vrfName = inputPlaybook['vrfName']
     ospfProcess = inputPlaybook['ospfProcess']
     ospfArea = inputPlaybook['ospfArea']
@@ -189,6 +189,7 @@ def task_validate_vrfName_function(role,inputPlaybook):
         return -1
 
     if ( len(vrfName) > 32  ) or  ( len(vrfName)  == 0 )  or ( re.search("[^a-zA-Z0-9\\-;_]", vrfName) != None ):
+        print('Invalid input for variable vrfName: vrfName input is not valid')
         return -1
         
     return 1
@@ -203,10 +204,12 @@ def task_validate_vlanId_function(role,inputPlaybook):
     if 'vlanId' in inputPlaybook and inputPlaybook['vlanId'] != None:
         vlanId = inputPlaybook['vlanId']
     else:
+        print('Invalid input for variable vlanId: vlanId input empty or vlanId key not included')
         return -1
     
     if isInt(vlanId):
         if ( vlanId < 1 ) or ( vlanId > 4095 ):
+            print('Invalid input for variable vlanId: vlanId input is less than 1 or more than 4095')
             return -1
             
     return 1
@@ -221,10 +224,12 @@ def task_validate_ospfProcess_function(role,inputPlaybook):
     if 'ospfProcess' in inputPlaybook and inputPlaybook['ospfProcess'] != None:
         ospfProcess = inputPlaybook['ospfProcess']
     else:
+        print('Invalid input for variable ospfProcess: ospfProcess input empty or ospfProcess key not included')
         return -1
     
     if isInt(ospfProcess):
         if ( ospfProcess  < 1 ) or  ( ospfProcess > 65535 ):
+            print('Invalid input for variable vlanId: vlanId input is less than 1 or more than 65535')
             return -1
     
     return 1 
@@ -240,9 +245,11 @@ def task_validate_ospfArea_function(role,inputPlaybook):
     if 'ospfArea' in inputPlaybook and inputPlaybook['ospfArea'] != None:
         ospfArea = inputPlaybook['ospfArea']
     else:
+        print('Invalid input for variable ospfArea: ospfArea input empty or ospfArea key not included')
         return -1
     
     if isInt(ospfArea) or not isOspfArea(ospfArea): 
+        print('Invalid input for variable ospfArea: ospfArea input is not valid')
         return -1
             
     return 1
@@ -257,12 +264,14 @@ def task_validate_ipNetwork_function(role,inputPlaybook):
     if role['inputVar'] in inputPlaybook and inputPlaybook[role['inputVar']] != None:
         subnet = inputPlaybook[role['inputVar']]
     else:
+        print('Invalid input for variable ' +  role['inputVar'] + ': ' + role['inputVar'] + ' input empty or ' + role['inputVar'] + ' key not included')
         return -1
     
-    if isSubnet(subnet):
-        return 1
+    if not isSubnet(subnet):
+        print('Invalid input for variable ' +  role['inputVar'] + ': ' + role['inputVar'] + ' is not valid')
+        return -1
     
-    return -1  
+    return 1  
 
 task_validate_ipNetwork = {
     "description": "validate ipNetwork",
@@ -274,10 +283,12 @@ def task_validate_interfaceLoopBackNumber_function(role,inputPlaybook):
     if 'interfaceLoopbackNumber' in inputPlaybook and inputPlaybook['interfaceLoopbackNumber'] != None:
         interfaceLoopbackNumber = inputPlaybook['interfaceLoopbackNumber']
     else:
+        print('Invalid input for variable interfaceLoopbackNumber: interfaceLoopbackNumber input empty or interfaceLoopbackNumber key not included')
         return -1
     
     if isInt(interfaceLoopbackNumber):
-        if ( interfaceLoopbackNumber  < 0 ) or  ( interfaceLoopbackNumber > 1023 ):
+        if ( interfaceLoopbackNumber  < 0 ) or ( interfaceLoopbackNumber > 1023 ):
+            print('Invalid input for variable interfaceLoopbackNumber: interfaceLoopbackNumber is less than 0 or higher than 1023')
             return -1
     
     return 1 
@@ -293,9 +304,11 @@ def task_validate_idNumber_function(role,inputPlaybook):
     if 'idNumber' in inputPlaybook and inputPlaybook['idNumber'] != None:
         idNumber = inputPlaybook['idNumber']
     else:
+        print('Invalid input for variable idNumber: idNumber input empty or idNumber key not included')
         return -1
 
     if len(idNumber) > 15  or len(idNumber)  == 0:
+        print('Invalid input for variable idNumber: idNumber lenght is  0 or higher than 15')
         return -1
         
     return 1
@@ -310,10 +323,12 @@ def task_validate_hsrpGroup_function(role,inputPlaybook):
     if 'hsrpGroup' in inputPlaybook and inputPlaybook['hsrpGroup'] != None:
         hsrpGroup = inputPlaybook['hsrpGroup']
     else:
+        print('Invalid input for variable hsrpGroup: hsrpGroup input empty or hsrpGroup key not included')
         return -1
         
     if isInt(hsrpGroup):
         if ( hsrpGroup < 1 ) or ( hsrpGroup > 4095 ):
+            print('Invalid input for variable hsrpGroup: hsrpGroup lenght is less than 1 or higher than 4095')
             return -1
     
     return 1
@@ -328,17 +343,22 @@ def task_validate_hostslist_function(role,inputPlaybook):
     if 'hostslist' in inputPlaybook and inputPlaybook['hostslist'] != None:
         hostslist = inputPlaybook['hostslist']
     else:
+        print('Invalid input for variable hostslist: hostslist input empty or hostslist key not included')
         return -1
     
     index = 0
     for hostName in hostslist:
         if index == 0 and not hostName in firstsHosts:
+            printHostNameError()
             return -1
         elif index == 1 and not hostName in secondsHosts:
+            printHostNameError()
             return -1
         elif index == 2 and not hostName in thirdsHosts:
+            printHostNameError()
             return -1
         elif index == 3 and not hostName in fourthsHosts:
+            printHostNameError()
             return -1
             
         index = index + 1

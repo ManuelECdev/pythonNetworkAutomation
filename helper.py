@@ -5,7 +5,6 @@ from ipaddress import *
 import re
 import yaml
 
-
 loader=  FileSystemLoader(".")
 
 ENV = Environment(loader=loader)
@@ -13,7 +12,7 @@ ENV = Environment(loader=loader)
 def get_config(configfile):
     """Pulls YAML configuration from file and returns dict object"""
     with open(configfile) as _:
-        return yaml.load(_)
+    	return yaml.load(_, Loader=yaml.FullLoader)
 
 def gen_snippet(snippet, config):
     """Renders a config snippet.
@@ -23,6 +22,9 @@ def gen_snippet(snippet, config):
     template = ENV.get_template('./snippets/Configuration/' + snippet + ".j2")
     return template.render(config)
     
+def printHostNameError():
+	print('Invalid input for variable hostslist: Hostname not supported or the Hostnames order is not correct')
+	
 def supportedInputKeys(inputKeys, supportedInputKeys):
 
 	for inputKey in inputKeys:
