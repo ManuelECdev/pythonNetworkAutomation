@@ -76,6 +76,5 @@ def isSubnet(str):
 	except (AddressValueError, NetmaskValueError):
 		return False
 	except ValueError:
-		print('entered')
 		return False
 	
