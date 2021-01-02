@@ -35,6 +35,11 @@ jobs:
           make circleCiInstall
 
     - run:
+        name: pwd
+        command: |
+          pwd
+
+    - run:
         name: run examples
         command: |
           make circleCiExample1
