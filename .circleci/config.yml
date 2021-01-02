@@ -38,6 +38,7 @@ jobs:
         name: pwd
         command: |
           pwd
+	  ls
 
     - run:
         name: run examples
