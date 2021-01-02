@@ -42,3 +42,5 @@ workflows:
     jobs:
       - build
       - runExamples
+          requires:
+            - build
