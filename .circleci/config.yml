@@ -41,6 +41,6 @@ workflows:
   default:
     jobs:
       - build
-      - runExamples
+      - runExamples:
           requires:
             - build
