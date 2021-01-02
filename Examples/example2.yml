@@ -1,0 +1,14 @@
+playbooks:
+-
+  playbookName:  config_newNetwork_fp
+  idNumber: idNumber1
+  vrfName:  MNG-MNG-M1-IA-02
+  ipNetwork: 10.179.143.0/24
+  ospfArea: 0.0.0.0
+  #Assign hsrp group
+  hsrpGroup: 2021
+  #Assign vlanId
+  vlanId: 2021
+  #ospfProcess
+  ospfProcess: oam
+  hostslist: [fpDs-1, fpDs-2]

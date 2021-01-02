@@ -1,0 +1,13 @@
+playbooks:
+-  
+  playbookName:  config_newOspfL3Out_dsFw_fp
+  idNumber: idNumber1
+  vrfName: MNG-MNG-M1-IA-02
+  ipNetworkXfer: 10.179.144.0/24
+  ipNetworkLoopBack: 10.179.142.0/24
+  ospfProcess: service
+  ospfArea: 0.0.0.1
+  interfaceLoopbackNumber: 1023
+  #Request for vlanid
+  vlanId: 2101
+  hostslist: [fpDs-1, fpDs-2]

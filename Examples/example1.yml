@@ -1,0 +1,6 @@
+playbooks:
+-
+  playbookName: config_newVrf_fp
+  idNumber: idNumber1
+  vrfName: MNG-MNG-M1-IA-02
+  hostslist: [fpDs-1, fpDs-2]
