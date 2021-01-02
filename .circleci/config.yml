@@ -29,6 +29,11 @@ jobs:
     steps:
     - checkout
 
+   - run:
+        name: install dependencies
+        command: |
+          make circleCiInstall
+
     - run:
         name: run examples
         command: |
