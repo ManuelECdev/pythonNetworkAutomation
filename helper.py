@@ -2,6 +2,7 @@
 from jinja2 import Environment, FileSystemLoader
 import ipaddress
 from ipaddress import *
+import ipaddress
 import re
 import yaml
 
@@ -24,7 +25,8 @@ def gen_snippet(snippet, config):
     
 def printHostNameError():
 	print('Invalid input for variable hostslist: Hostname not supported or the Hostnames order is not correct')
-	
+
+"""	
 def supportedInputKeys(inputKeys, supportedInputKeys):
 
 	for inputKey in inputKeys:
@@ -35,6 +37,7 @@ def supportedInputKeys(inputKeys, supportedInputKeys):
 			return -1
 
 	return 1
+"""
 	
 def printHostName(HostName):
 	return "################### " + HostName + " ###################\n"
@@ -68,10 +71,11 @@ def isOspfArea(str):
 
 def isSubnet(str):
 	try:
-		ip_network(str)
+		ipaddress.ip_network(str)
 		return True
 	except (AddressValueError, NetmaskValueError):
 		return False
 	except ValueError:
+		print('entered')
 		return False
 	

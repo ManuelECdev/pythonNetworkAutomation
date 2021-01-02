@@ -261,8 +261,10 @@ task_validate_ospfArea = {
 
 def task_validate_ipNetwork_function(role,inputPlaybook):
     
+    print("passed")
     if role['inputVar'] in inputPlaybook and inputPlaybook[role['inputVar']] != None:
-        subnet = inputPlaybook[role['inputVar']]
+        subnet = str(inputPlaybook[role['inputVar']])
+        print(subnet)
     else:
         print('Invalid input for variable ' +  role['inputVar'] + ': ' + role['inputVar'] + ' input empty or ' + role['inputVar'] + ' key not included')
         return -1

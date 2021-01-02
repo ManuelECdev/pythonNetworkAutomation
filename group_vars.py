@@ -1,9 +1,7 @@
-#HostOrder group vars
-
 from ipaddress import *
 import ipaddress
 
-supportedInputKeys = ['vrfName','idNumber','vrfName','hostslist','ipNetwork','ospfArea','hsrpGroup','vlanId','ospfProcess','ipNetworkXfer','ipNetworkLoopBack','interfaceLoopbackNumber','ospfPassword']
+#supportedInputKeys = ['vrfName','idNumber','vrfName','hostslist','ipNetwork','ospfArea','hsrpGroup','vlanId','ospfProcess','ipNetworkXfer','ipNetworkLoopBack','interfaceLoopbackNumber','ospfPassword']
 
 firstsHosts = {'fpDs-1'}
 
