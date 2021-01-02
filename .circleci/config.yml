@@ -20,7 +20,25 @@ jobs:
         command: |
           make circleCiInstall
 
+  runExamples:
+    docker:
+      - image: python:2.7
+
+    working_directory: ~/repo
+
+    steps:
+    - checkout
+
+    - run:
+        name: run examples
+        command: |
+          make circleCiExample1
+          make circleCiExample2
+          make circleCiExample3
+          make circleCiExample4
+
 workflows:
   default:
     jobs:
       - build
+      - runExamples
