@@ -36,14 +36,14 @@ circleCiInstall:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 
-CircleCiExample1:
+circleCiExample1:
 	python main.py -yaml  ../pythonNetworkAutomation/Examples/example1.yml
 
-CircleCiExample2:
+circleCiExample2:
 	python main.py -yaml  ../pythonNetworkAutomation/Examples/example2.yml
 
-CircleCiExample3:
+circleCiExample3:
 	python main.py -yaml  ../pythonNetworkAutomation/Examples/example3.yml
 
-CircleCiExample4:
+circleCiExample4:
 	python main.py -yaml  ../pythonNetworkAutomation/Examples/example4.yml
