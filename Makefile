@@ -32,18 +32,17 @@ localSetupAndInstall:
 	)
 
 circleCiInstall:
-	# This should be run from inside a virtualenv
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 
 circleCiExample1:
-	python main.py -yaml  ../pythonNetworkAutomation/Examples/example1.yml
+	python main.py -yaml  ./Examples/example1.yml
 
 circleCiExample2:
-	python main.py -yaml  ../pythonNetworkAutomation/Examples/example2.yml
+	python main.py -yaml  ./Examples/example2.yml
 
 circleCiExample3:
-	python main.py -yaml  ../pythonNetworkAutomation/Examples/example3.yml
+	python main.py -yaml  ./Examples/example3.yml
 
 circleCiExample4:
-	python main.py -yaml  ../pythonNetworkAutomation/Examples/example4.yml
+	python main.py -yaml  ./Examples/example4.yml
