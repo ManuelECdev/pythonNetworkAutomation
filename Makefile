@@ -50,4 +50,4 @@ circleCiExample4:
 	python main.py -yaml  ./Examples/example4.yml
 	
 circleCiTest:
-	pytest ./tests.py
+	pytest tests.py
