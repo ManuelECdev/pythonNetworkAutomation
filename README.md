@@ -1,7 +1,7 @@
 ## Project summary
 
 The project's scope is to automatize the development of configurations for Routers and Switches.
-This version automatize the development of configurations in a Fabricpath deployment with Cisco Nexus devices:
+This version automatizes the development of configurations in a Fabricpath deployment with Cisco Nexus devices:
 
 * New vrf creation
 * New subnet creation.
