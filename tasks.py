@@ -46,7 +46,7 @@ def task_buildConfig_newInterfaceVlanXferFw_fp_function(printHostName,hostName,i
     
     #build variables from groupVars, inputVars
     ospfPassword = designGroupVar['ospfPasswordFunction'](vlanId, vrfName)
-    ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetXfer)
+    ipAddress = buildIpAddress(subnet, ipOffsetXfer)
     ipPrefix = buildPrefixlen(subnet)
     
     newInterfaceVlanXferFwObject = newInterfaceVlanXferFw(interfaceName, interfaceNumber, interfaceDescription, vrfName, ipAddress, ipPrefix, ospfPassword , ospfProcess, ospfArea)
@@ -84,7 +84,7 @@ def task_buildConfig_newInterfaceLoopback_fp_function(printHostName,hostName,inp
     ipOffsetLoopback = hostOrderGroupVar['ipOffsetLoopback']
     
     #build variables from groupVars, inputVars
-    ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetLoopback)
+    ipAddress = buildIpAddress(subnet, ipOffsetLoopback)
     ipPrefix = designGroupVar['LoopbackPrefix']
     
     newInterfaceLoopbackObject = newInterfaceLoopback(interfaceName, interfaceNumber, vrfName, ipAddress, ipPrefix , ospfProcess, ospfArea)
@@ -118,7 +118,7 @@ def task_buildConfig_newOspf_fp_function(printHostName,hostName,inputPlaybook,gr
     #setup variables from group vars
     deviceOrder= hostOrderGroupVar['deviceOrder']
     ipOffsetLoopback = hostOrderGroupVar['ipOffsetLoopback']
-    routerId = designGroupVar['routerIdFunction'](subnet,ipOffsetLoopback,deviceOrder)
+    routerId = designGroupVar['routerIdFunction'](subnet,ipOffsetLoopback)
 
     newOspfObject = newOspf(ospfProcess, vrfName, routerId, ospfArea)
     
@@ -158,7 +158,7 @@ def task_buildConfig_newNetwork_fp_function(printHostName,hostName,inputPlaybook
     hsrpVipOffset = designGroupVar['hsrpVipOffset']
     
     #build variables from groupVars, inputVars
-    ipAddress = buildIpAddress(subnet,deviceOrder, ipOffsetServer)
+    ipAddress = buildIpAddress(subnet, ipOffsetServer)
     ipPrefix = buildPrefixlen(subnet)
     hsrpAuth = designGroupVar['hsrpAuthFunction'](vlanId)
     hsrpPriority = hostOrderGroupVar['hsrpPriority']

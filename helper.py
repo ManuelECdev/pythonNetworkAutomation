@@ -43,7 +43,7 @@ def printHostName(HostName):
 	return "################### " + HostName + " ###################\n"
 	
 	
-def buildIpAddress(subnet,deviceNameOrder,ipOffset ):
+def buildIpAddress(subnet,ipOffset ):
     return str( ipaddress.ip_network(subnet).network_address  + ipOffset )
     
 def buildPrefixlen(subnet):

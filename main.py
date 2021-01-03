@@ -31,13 +31,13 @@ def run():
                 if sys.argv[index] == "-yaml":
 
                     if index == argslen -1:
-                        print ("Error in the arguments. Usage: -yaml <inputFile>")
+                        print("Error in the arguments. Usage: -yaml <inputFile>")
                         sys.exit()
                     else:
                         yamlFileName = sys.argv[index + 1]
 
     except IndexError:
-        print ("An error happened, exiting ... ")
+        print("An error happened, exiting ... ")
         sys.exit()
 
     #
@@ -66,7 +66,7 @@ def run():
     if 'playbooks' in inputPlaybooks:
         inputPlaybooks = input['playbooks']
     else:
-        print ("Error: playbooks key not provided in input file")
+        print("Error: playbooks key not provided in input file")
         sys.exit()
 
     #
@@ -83,10 +83,10 @@ def run():
             if playbook:
                 renderedPlaybooks.append(runPlaybook(playbook, inputPlaybook, hostName2GroupVar))
             else:
-                print ("Error: playbookName value not valid, exiting ...")
+                print("Error: playbookName value not valid, exiting ...")
                 sys.exit()
         else:
-            print ("Error: playbookName key not provided in playbook input, exiting ...")
+            print("Error: playbookName key not provided in playbook input, exiting ...")
             sys.exit()
     #
     #

@@ -50,7 +50,7 @@ def buildOspfPassword(vlanId, vrfName):
     join = mySeparator.join([str(vlanId),vrfName])
     return join[0:8]
     
-def buildRouterId(subnet,ipOffsetLoopback,deviceOrder):
+def buildRouterId(subnet,ipOffsetLoopback):
     
     ipAddress = str( ipaddress.ip_network(subnet).network_address  + ipOffsetLoopback )
 
