@@ -6,23 +6,23 @@ SHELL := /bin/bash
 localExample1:
 	( \
 		source ~/pythonNetworkAutomation/bin/activate; \
-		python main.py -yaml  ../pythonNetworkAutomation/Examples/example1.yml; \
+		python main.py -yaml  ./Examples/example1.yml; \
 	) 
 localExample2:
 	( \
 		source ~/pythonNetworkAutomation/bin/activate; \
-		python main.py -yaml  ../pythonNetworkAutomation/Examples/example2.yml; \
+		python main.py -yaml  ./Examples/example2.yml; \
 	) 
 
 localExample3:
 	( \
 		source ~/pythonNetworkAutomation/bin/activate; \
-		python main.py -yaml  ../pythonNetworkAutomation/Examples/example3.yml; \
+		python main.py -yaml  ./Examples/example3.yml; \
 	)
 localExample4:
 	( \
 		source ~/pythonNetworkAutomation/bin/activate; \
-		python main.py -yaml  ../pythonNetworkAutomation/Examples/example4.yml; \
+		python main.py -yaml  ./Examples/example4.yml; \
 	)  
 localSetupAndInstall:
 	( \
@@ -30,7 +30,10 @@ localSetupAndInstall:
 		source ~/pythonNetworkAutomation/bin/activate; \
 		pip install --upgrade pip && pip install -r requirements.txt; \
 	)
-
+	
+localTest:
+	pytest ./tests.py
+	
 circleCiInstall:
 	pip install --upgrade pip && pip install -r requirements.txt
 
@@ -45,3 +48,6 @@ circleCiExample3:
 
 circleCiExample4:
 	python main.py -yaml  ./Examples/example4.yml
+	
+circleCiTest:
+	pytest ./tests.py

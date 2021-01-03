@@ -19,7 +19,26 @@ jobs:
         name: install dependencies
         command: |
           make circleCiInstall
+          
+  test:
+    docker:
+      - image: python:3.6.12-buster
 
+    working_directory: ~/repo
+
+    steps:
+    - checkout
+
+    - run:
+        name: install dependencies
+        command: |
+          make circleCiInstall
+          
+    - run:
+        name: test the code
+        command: |
+          make circleCiTest
+          
   runExamples:
     docker:
       - image: python:3.6.12-buster
@@ -47,3 +66,4 @@ workflows:
     jobs:
       - build
       - runExamples
+      - test
