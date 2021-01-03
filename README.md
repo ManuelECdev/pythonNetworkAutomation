@@ -1,7 +1,7 @@
 ## Project summary
 
-The project's scope is to automatize the development of configurations for Router and Switches.
-This version automatize the development of the configurations on a Fabricpath deployment with Cisco Nexus devices:
+The project's scope is to automatize the development of configurations for Routers and Switches.
+This version automatize the development of configurations in a Fabricpath deployment with Cisco Nexus devices:
 
 * New vrf creation
 * New subnet creation.
@@ -33,7 +33,7 @@ make circleCiExample1
 
 * Configure ospf and L3out towards a FW:
 
-make circleCiExample4
+make circleCiExample2
 
 * Configure a new subnet:
 
