@@ -29,15 +29,15 @@ Please have a look at the foler Examples. There are 4 examples available.
 
 * Create a new vrf:
 
-make circleCiExample1
+make localExample1
 
 * Configure ospf and L3out towards a FW:
 
-make circleCiExample2
+make localExample2
 
 * Configure a new subnet:
 
-make circleCiExample3
+make localExample3
 
 
 
