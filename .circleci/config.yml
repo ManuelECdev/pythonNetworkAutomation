@@ -33,12 +33,7 @@ jobs:
         name: install dependencies
         command: |
           make circleCiInstall
-        
-    - run:
-        name: test the code
-        command: |
-          ls
-          
+  
     - run:
         name: test the code
         command: |
