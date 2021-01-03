@@ -39,6 +39,11 @@ jobs:
         command: |
           make circleCiTest
           
+    - run:
+        name: test the code
+        command: |
+          ls
+          
   runExamples:
     docker:
       - image: python:3.6.12-buster
